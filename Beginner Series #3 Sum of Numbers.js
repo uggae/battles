@@ -1,14 +1,19 @@
 function GetSum( a,b )
 {
-  var sum = 0
-  if (a<b) {
-    for (var i = a; i<=b; i++) {
+// array.reduce(function(total, currentValue, currentIndex, arr), initialValue)
+  var sumSorted = function (start,end) {
+    var sum = 0
+    for (var i = start; i<=end; i++) {
       sum += i
     }
-  } else {
-    for (var i = b; i<=a; i++) {
-      sum += i
-    }
+    return sum
   }
-  return sum
+  if (a<b) {
+    return sumSorted(a,b)
+    }
+    else if (a>b) {
+      return sumSorted(b,a)
+      }
+      else
+      return a
 }
