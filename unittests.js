@@ -4,11 +4,13 @@ var myModules = [
   "Beginner Series #3 Sum of Numbers"
 ]
 
-//array.forEach(function(currentValue, index, arr), thisValue)
-myModules.forEach(testIt)
+myModules.forEach(
+   (exercise) => {
+    var source = exercise + ".js"
+    var tests = "./" + exercise + ".test.js"
+    console.log("Testing " + tests  )
+    require(tests);
+  }
+)
 
-function testIt(exercise) {
-  var source = exercise + ".js"
-  var tests = exercise + ".test.js"
-  console.log("Testing " + tests  )
-}
+return -1

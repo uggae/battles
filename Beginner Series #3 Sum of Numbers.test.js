@@ -10,6 +10,8 @@ function GetSum( a,b )
   return (a<b) ? sumSorted(a,b) : sumSorted(b,a)
 }
 */
-var myModule = require("Beginner Series #3 Sum of Numbers.js")
+var myModule = require("./Beginner Series #3 Sum of Numbers.js")
 
 console.log(myModule.GetSum( 1,2 ))
+console.log(myModule.GetSum( 0,0 ))
+console.log(myModule.GetSum( 0,-1 ))
