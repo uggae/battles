@@ -1,8 +1,13 @@
 /*
+ * DEPRECATED
+ *
+ */
+/*
 exports.mySum = function (a,b) {
   return a+b;
 };
 */
+
 var myMod = require("./sourcefile.js")
 
 console.log(myMod.mySum(1,2));
