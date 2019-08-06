@@ -8,8 +8,8 @@ exports.exercises = [
   "Kata Opposite number",
   "Kata Stringy Strings",
   "Kata Stringy Strings minimal1",
-  "Kata Stringy Strings minimal2"
-  //"Kata A Gift Well Spent"
+  "Kata Stringy Strings minimal2",
+  "Kata A Gift Well Spent"
 ]
 
 function checkFileExistsSync(filepath){
