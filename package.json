@@ -6,7 +6,7 @@
   "dependencies": {},
   "devDependencies": {},
   "scripts": {
-    "test": "node unittests.js"
+    "test": "node unittests.js --quiet"
   },
   "repository": {
     "type": "git",
