@@ -35,3 +35,13 @@ var buy = function(x, arr) {
   //evaluate
   return null;
 };
+
+var exports = module.exports={}
+exports.test = function () {
+  const assert = require('assert');
+  // TODO: Tests are commmented as code is not working
+  assert.deepEqual(buy(2,[1,1]), [0,1])
+  assert.deepEqual(buy(3,[1,1]), null)
+  assert.deepEqual(buy(5,[5,2,3,4,5]), [1,2])
+
+}
