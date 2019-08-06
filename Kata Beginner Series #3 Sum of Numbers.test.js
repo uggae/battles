@@ -1,5 +1,5 @@
 const assert = require('assert');
-var myModule = require("./Beginner Series #3 Sum of Numbers.js")
+var myModule = require("./Kata Beginner Series #3 Sum of Numbers.js")
 
 assert.equal(myModule.GetSum(1,2) , 3);
 assert( myModule.GetSum(0,0) == 0, "Should be true")

@@ -3,12 +3,13 @@ var exports = module.exports={}
 
 exports.exercises = [
   "sourcefile",
-  "Beginner Series #3 Sum of Numbers",
-  "Beginner Series #3 Sum of Numbers minimal",
-  "Opposite number",
-  "Stringy Strings",
-  "Stringy Strings minimal1",
-  "Stringy Strings minimal2"
+  "Kata Beginner Series #3 Sum of Numbers",
+  "Kata Beginner Series #3 Sum of Numbers minimal",
+  "Kata Opposite number",
+  "Kata Stringy Strings",
+  "Kata Stringy Strings minimal1",
+  "Kata Stringy Strings minimal2"
+  //"Kata A Gift Well Spent"
 ]
 
 function checkFileExistsSync(filepath){
