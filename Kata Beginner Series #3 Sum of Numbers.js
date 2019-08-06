@@ -1,3 +1,6 @@
+var exports = module.exports={}
+exports.GetSum = GetSum
+
 function GetSum( a,b )
 {
   var sumSorted = function (start,end) {

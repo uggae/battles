@@ -1,0 +1,24 @@
+{
+  "name": "battles",
+  "version": "0.0.1",
+  "description": "Package containing all my codewars examples and tests",
+  "main": "entryPoint.js",
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {
+    "test": "node unittests.js --quiet"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/uggae/battles.git"
+  },
+  "keywords": [
+    "codewars"
+  ],
+  "author": "Martin Homola <uggae@uggae.net>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/uggae/battles/issues"
+  },
+  "homepage": "https://github.com/uggae/battles#readme"
+}
