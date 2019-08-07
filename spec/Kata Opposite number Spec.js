@@ -1,17 +1,17 @@
 describe("OppositeNumber", function() {
-  var OppositeNumber = require('../Kata Opposite number.js');
-  var oppositeNumber;
+  var TestModule = require('../Kata Opposite number.js');
+  var testModule;
 
   beforeEach(function() {
-    oppositeNumber = new OppositeNumber();
+    testModule = new TestModule();
   });
 
   it("should be able to do opposite of positive number", function() {
-    expect(oppositeNumber.opposite(11)).toEqual(-11);
+    expect(testModule.opposite(11)).toEqual(-11);
   });
 
   it("should be able to do opposite of 0... it's -0, right?", function() {
-    expect(oppositeNumber.opposite(0)).toEqual(-0); // wut
+    expect(testModule.opposite(0)).toEqual(-0); // wut
   });
 
 /*
@@ -21,13 +21,6 @@ it("This test fails", function() {
 */
 
   it("should be able to do opposite of negative number", function() {
-    expect(oppositeNumber.opposite(-223)).toEqual(223);
+    expect(testModule.opposite(-223)).toEqual(223);
   });
 })
-/*
-exports.test = function () {
-  assert.equal(opposite(1) , -1);
-  assert.equal(opposite(0) , 0);
-  assert.equal(opposite(-50) , 50);
-}
-*/
