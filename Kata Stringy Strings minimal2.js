@@ -1,3 +1,8 @@
+function TestModule() {
+}
+TestModule.prototype.stringy = size => Array.from(Array(size), (v, i) => +!(i % 2)).join('');
+module.exports = TestModule
+/*
 const assert = require('assert');
 var exports = module.exports={}
 
@@ -14,3 +19,4 @@ exports.test = function () {
 
   assert.equal(stringy(12) , "101010101010");
 }
+*/

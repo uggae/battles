@@ -1,3 +1,8 @@
+function TestModule() {
+}
+TestModule.prototype.stringy = size => "10".repeat(size).slice(0,size);
+module.exports = TestModule
+/*
 const assert = require('assert');
 var exports = module.exports={}
 
@@ -14,3 +19,4 @@ exports.test = function () {
 
   assert.equal(stringy(12) , "101010101010");
 }
+*/

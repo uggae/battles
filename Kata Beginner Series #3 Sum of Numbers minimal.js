@@ -1,3 +1,10 @@
+function TestModule() {
+}
+TestModule.prototype.GetSum = function (a,b) {
+  return (Math.abs(a - b) + 1) * (a+b) / 2;
+}
+module.exports = TestModule
+/*
 var exports = module.exports={}
 
 function GetSum( a,b )
@@ -13,3 +20,4 @@ exports.test = () => {
   assert.deepEqual(GetSum(10,200) , 20055);
   assert.deepEqual(GetSum(0,-1) , -1);
 }
+*/
