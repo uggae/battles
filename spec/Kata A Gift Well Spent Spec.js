@@ -1,4 +1,4 @@
-describe("OppositeNumber", function() {
+describe("A Gift Well Spent", function() {
     var TestModule = require('../Kata A Gift Well Spent.js');
     var testModule;
 
