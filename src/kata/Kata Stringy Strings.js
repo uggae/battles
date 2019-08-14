@@ -1,3 +1,14 @@
+function TestModule() {
+}
+TestModule.prototype.stringy = function (size) {
+  var out = "10"
+  for (var i = 0; i < size/2; i++)
+    out = out.toString() + ("10")
+  return out.substr(0,size)
+}
+module.exports = TestModule
+
+/*
 const assert = require('assert');
 var exports = module.exports={}
 
@@ -25,3 +36,4 @@ assert.equal(stringy(4) , "1010");
 //with size 12 should return : '101010101010'.
 assert.equal(stringy(12) , "101010101010");
 }
+*/
