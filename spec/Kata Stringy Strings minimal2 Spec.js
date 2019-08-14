@@ -1,5 +1,5 @@
 describe("Stringy Strings minimal2", function() {
-  var TestModule = require('../Kata Stringy Strings minimal2.js');
+  var TestModule = require('../src/kata/Kata Stringy Strings minimal2.js');
   var testModule;
 
   beforeEach(function() {

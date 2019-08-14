@@ -1,5 +1,5 @@
 describe("A Gift Well Spent", function() {
-    var TestModule = require('../Kata A Gift Well Spent.js');
+    var TestModule = require('../src/kata/Kata A Gift Well Spent.js');
     var testModule;
 
     beforeEach(function() {

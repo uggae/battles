@@ -1,5 +1,5 @@
 describe("Sourcefile", function() {
-  var TestModule = require('../Kata Beginner Series #3 Sum of Numbers.js');
+  var TestModule = require('../src/kata/Kata Beginner Series #3 Sum of Numbers.js');
   var testModule;
 
   beforeEach(function() {

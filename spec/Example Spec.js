@@ -1,5 +1,5 @@
-describe("Sourcefile", function() {
-  var TestModule = require('../sourcefile.js');
+describe("Example", function() {
+  var TestModule = require('../src/kata/Example.js');
   var testModule;
 
   beforeEach(function() {

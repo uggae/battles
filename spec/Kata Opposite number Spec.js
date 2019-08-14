@@ -1,5 +1,5 @@
 describe("OppositeNumber", function() {
-  var TestModule = require('../Kata Opposite number.js');
+  var TestModule = require('../src/kata/Kata Opposite number.js');
   var testModule;
 
   beforeEach(function() {
