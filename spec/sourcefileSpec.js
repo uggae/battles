@@ -13,7 +13,9 @@ describe("Sourcefile", function() {
   it("should be able to add 0+0", function() {
     expect(testModule.mySum(0,0)).toEqual(0);
   });
+
   it("should be able to add 10+200", function() {
     expect(testModule.mySum(10,200)).toEqual(210);
   });
+
 })
