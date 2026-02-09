@@ -92,6 +92,15 @@ describe("binary genetic algorithms", () => {
       expect(result).to.be.an("array").and.have.lengthOf(2);
       result.forEach((chromosome) => expect(population).to.include(chromosome));
     });
+    it("falls back to the last chromosome when all fitnesses are zero", () => {
+      const ga = new GeneticAlgorithm();
+      const population = ["00", "01", "10"];
+      const fitnesses = [0, 0, 0];
+      const result = ga.select(population, fitnesses);
+      expect(result).to.be.an("array").and.have.lengthOf(2);
+      expect(result[0]).to.equal("10");
+      expect(result[1]).to.equal("10");
+    });
   });
 
   describe("mutate:", () => {

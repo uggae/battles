@@ -71,37 +71,23 @@ export class GeneticAlgorithm {
 
   fitness(chromosome: string) {
     const getValues = (chromosome: string) => {
-      let sum = 0;
-      let product = 1;
-      for (let i = 0; i < chromosome.length; i++) {
-        const curr = chromosome[i];
-        if (curr === "1") {
-          sum += i + 1;
-        } else if (curr === "0") {
-          product *= i + 1;
-        } else {
-          throw new Error("Invalid character in chromosome");
-        }
-      }
+      const sum = chromosome
+        .split("")
+        .reduce((acc, curr, idx) => acc + parseInt(curr) * (idx + 1), 0);
+      const product = chromosome
+        .split("")
+        .reduce((acc, curr, idx) => (curr === "0" ? acc * (idx + 1) : acc), 1);
       return { sum, product };
     };
-    // TODO: is there a more efficient way to calculate the sum and product?
-    // const sum = chromosome
-    //   .split("")
-    //   .reduce((acc, curr, idx, arr) => acc + parseInt(curr) * (idx + 1), 0);
-    // const product = chromosome
-    //   .split("")
-    //   .reduce(
-    //     (acc, curr, idx, arr) => acc * (1 - parseInt(curr)) * (idx + 1),
-    //     1,
-    //   );
-    const { sum, product } = getValues(chromosome);
-    const getScore = (sum: number, product: number) => {
+
+    const getScore = (chromosome: string) => {
+      const { sum, product } = getValues(chromosome);
       const idealSum = 38;
       const idealProduct = 210;
       return Math.sqrt((sum - idealSum) ** 2 + (product - idealProduct) ** 2);
     };
-    const score = getScore(sum, product);
+
+    const score = getScore(chromosome);
     return 1 / score;
   }
 
@@ -124,7 +110,11 @@ export class GeneticAlgorithm {
     let population = this.getInitialPopulation(length, populationSize);
     for (let i = 0; i < iterations; i++) {
       const fitnesses = population.map(fitness);
-      //TODO: should we terminate early when we have the best chromosome?
+      // Early exit if we already have an ideal chromosome (fitness === Infinity)
+      const perfectIdx = fitnesses.findIndex((f) => f === Infinity);
+      if (perfectIdx !== -1) {
+        return population;
+      }
       let newPopulation = [];
       while (newPopulation.length < population.length) {
         const selected = this.select(population, fitnesses);
