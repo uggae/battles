@@ -22,15 +22,22 @@ export class GeneticAlgorithm {
   }
 
   mutate(chromosome: string, p: number) {
+    let newChromosome = chromosome;
     for (let i = 0; i < chromosome.length; i++) {
       if (Math.random() < p) {
-        chromosome =
-          chromosome.substring(0, i) +
-          (chromosome[i] === "0" ? "1" : "0") +
-          chromosome.substring(i + 1);
+        // TODO: is it OK to reuse the variable chromosome?
+        // chromosome =
+        // chromosome.substring(0, i) +
+        // (chromosome[i] === "0" ? "1" : "0") +
+        // chromosome.substring(i + 1);
+
+        newChromosome =
+          newChromosome.substring(0, i) +
+          (newChromosome[i] === "0" ? "1" : "0") +
+          newChromosome.substring(i + 1);
       }
     }
-    return chromosome;
+    return newChromosome;
   }
 
   crossover(chromosome1: string, chromosome2: string) {
