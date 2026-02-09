@@ -1,3 +1,7 @@
+// import { fitness } from "./preloaded";
+// import { GeneticAlgorithm } from './solution';
+// import { assert } from 'chai';
+
 import { expect } from "chai";
 import { GeneticAlgorithm } from "../src/index";
 
@@ -186,23 +190,7 @@ describe("binary genetic algorithms", () => {
     it("runs the genetic algorithm", () => {
       const ga = new GeneticAlgorithm();
       const result = ga.run(ga.fitness, 10, 0.8, 0.1);
-      expect(result).to.be.an("array").and.have.lengthOf(100);
-      result.forEach((chromosome) =>
-        expect(chromosome)
-          .to.be.a("string")
-          .and.to.match(/^[01]+$/),
-      );
-    });
-  });
-
-  describe("getBestChromosome:", () => {
-    it("gets the best chromosome from the population", () => {
-      const ga = new GeneticAlgorithm();
-      const result = ga.getBestChromosome(["00", "01", "10", "11"]);
-      expect(result)
-        .to.be.a("string")
-        .and.to.match(/^[01]+$/);
-      expect(result).to.be.equal("10");
+      expect(result).to.be.a("string").and.have.lengthOf(10);
     });
   });
 

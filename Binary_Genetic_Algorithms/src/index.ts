@@ -110,11 +110,6 @@ export class GeneticAlgorithm {
     let population = this.getInitialPopulation(length, populationSize);
     for (let i = 0; i < iterations; i++) {
       const fitnesses = population.map(fitness);
-      // Early exit if we already have an ideal chromosome (fitness === Infinity)
-      const perfectIdx = fitnesses.findIndex((f) => f === Infinity);
-      if (perfectIdx !== -1) {
-        return population;
-      }
       let newPopulation = [];
       while (newPopulation.length < population.length) {
         const selected = this.select(population, fitnesses);
@@ -130,12 +125,9 @@ export class GeneticAlgorithm {
       }
       population = newPopulation;
     }
-    return population;
-  }
-
-  getBestChromosome(population: string[]): string {
-    const fitnesses = population.map(this.fitness);
-    return population[fitnesses.indexOf(Math.max(...fitnesses))];
+    const fitnesses = population.map(fitness);
+    const best = population[fitnesses.indexOf(Math.max(...fitnesses))];
+    return best;
   }
 
   presentChromosome(chromosome: string) {
@@ -145,8 +137,7 @@ export class GeneticAlgorithm {
   }
 
   complete() {
-    const population = this.run(this.fitness, 10, 0.8, 0.1);
-    const best = this.getBestChromosome(population);
+    const best = this.run(this.fitness, 10, 0.8, 0.1);
     this.presentChromosome(best);
   }
 }
