@@ -40,6 +40,34 @@ describe("binary genetic algorithms", () => {
       result.forEach((chromosome) => expect(population).to.include(chromosome));
     });
   });
+  describe("mutate:", () => {
+    it("mutates a binary string", () => {
+      const ga = new GeneticAlgorithm();
+      const result = ga.mutate("00", 0.5);
+      expect(result)
+        .to.be.a("string")
+        .and.to.match(/^[01]+$/);
+      expect(result).to.have.lengthOf(2);
+    });
+    it("no mutation when p is 0", () => {
+      const ga = new GeneticAlgorithm();
+      const result = ga.mutate("01001", 0);
+      expect(result)
+        .to.be.a("string")
+        .and.to.match(/^[01]+$/);
+      expect(result).to.have.lengthOf(5);
+      expect(result).to.be.equal("01001");
+    });
+    it("full mutation when p is 1", () => {
+      const ga = new GeneticAlgorithm();
+      const result = ga.mutate("01001", 1);
+      expect(result)
+        .to.be.a("string")
+        .and.to.match(/^[01]+$/);
+      expect(result).to.have.lengthOf(5);
+      expect(result).to.be.equal("10110");
+    });
+  });
   describe("fitness:", () => {
     it("calculates the fitness of a binary string (0)", () => {
       const ga = new GeneticAlgorithm();

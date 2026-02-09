@@ -22,7 +22,14 @@ export class GeneticAlgorithm {
   }
 
   mutate(chromosome: string, p: number) {
-    // TODO: Implement the mutate method
+    for (let i = 0; i < chromosome.length; i++) {
+      if (Math.random() < p) {
+        chromosome =
+          chromosome.substring(0, i) +
+          (chromosome[i] === "0" ? "1" : "0") +
+          chromosome.substring(i + 1);
+      }
+    }
     return chromosome;
   }
 
