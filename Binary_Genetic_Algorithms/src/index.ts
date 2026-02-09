@@ -42,7 +42,14 @@ export class GeneticAlgorithm {
 
   crossover(chromosome1: string, chromosome2: string) {
     // TODO: Implement the crossover method
-    return [chromosome1, chromosome2];
+    const crossoverPoint = Math.floor(Math.random() * chromosome1.length);
+    const newChromosome1 =
+      chromosome1.substring(0, crossoverPoint) +
+      chromosome2.substring(crossoverPoint);
+    const newChromosome2 =
+      chromosome2.substring(0, crossoverPoint) +
+      chromosome1.substring(crossoverPoint);
+    return [newChromosome1, newChromosome2];
   }
 
   fitness(chromosome: string) {

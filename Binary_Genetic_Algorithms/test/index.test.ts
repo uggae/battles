@@ -68,6 +68,29 @@ describe("binary genetic algorithms", () => {
       expect(result).to.be.equal("10110");
     });
   });
+  describe("crossover:", () => {
+    it("crossover two binary strings", () => {
+      const ga = new GeneticAlgorithm();
+      const input = ["00000", "11111"];
+      const result = ga.crossover(input[0], input[1]);
+      expect(result).to.be.an("array").and.have.lengthOf(2);
+      result.forEach((chromosome) =>
+        expect(chromosome)
+          .to.be.a("string")
+          .and.to.match(/^[01]+$/),
+      );
+      const len = input[0].length;
+      for (let i = 0; i < len; i++) {
+        const inputZeros = input.filter((c) => c[i] === "0").length;
+        const inputOnes = input.filter((c) => c[i] === "1").length;
+        const outputZeros = result.filter((c) => c[i] === "0").length;
+        const outputOnes = result.filter((c) => c[i] === "1").length;
+        expect(outputZeros, `position ${i} zeros`).to.equal(inputZeros);
+        expect(outputOnes, `position ${i} ones`).to.equal(inputOnes);
+      }
+    });
+  });
+
   describe("fitness:", () => {
     it("calculates the fitness of a binary string (0)", () => {
       const ga = new GeneticAlgorithm();
