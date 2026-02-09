@@ -18,14 +18,17 @@ export class GeneticAlgorithm {
 
   select(population: string[], fitnesses: number[]) {
     // TODO: Implement the select method
+    return [population[0], population[1]];
   }
 
   mutate(chromosome: string, p: number) {
     // TODO: Implement the mutate method
+    return chromosome;
   }
 
   crossover(chromosome1: string, chromosome2: string) {
     // TODO: Implement the crossover method
+    return [chromosome1, chromosome2];
   }
 
   fitness(chromosome: string) {
@@ -34,9 +37,9 @@ export class GeneticAlgorithm {
       let product = 1;
       for (let i = 0; i < chromosome.length; i++) {
         const curr = chromosome[i];
-        if (curr === "0") {
+        if (curr === "1") {
           sum += i + 1;
-        } else if (curr === "1") {
+        } else if (curr === "0") {
           product *= i + 1;
         } else {
           throw new Error("Invalid character in chromosome");
@@ -63,6 +66,14 @@ export class GeneticAlgorithm {
     return 1 / score;
   }
 
+  getInitialPopulation(length: number, populationSize: number): string[] {
+    const population: string[] = [];
+    for (let i = 0; i < populationSize; i++) {
+      population.push(this.generate(length));
+    }
+    return population;
+  }
+
   run(
     fitness: (chromosome: string) => number,
     length: number,
@@ -70,6 +81,36 @@ export class GeneticAlgorithm {
     p_m: number,
     iterations = 100,
   ) {
-    // TODO: Implement the run method
+    const populationSize = 100;
+    let population = this.getInitialPopulation(length, populationSize);
+    for (let i = 0; i < iterations; i++) {
+      const fitnesses = population.map(fitness);
+      let newPopulation = [];
+      while (newPopulation.length < population.length) {
+        const selected = this.select(population, fitnesses);
+        const crossed =
+          Math.random() < p_c
+            ? this.crossover(selected[0], selected[1])
+            : selected;
+        const mutated = [
+          this.mutate(crossed[0], p_m),
+          this.mutate(crossed[1], p_m),
+        ];
+        newPopulation.push(mutated[0], mutated[1]);
+      }
+      population = newPopulation;
+    }
+    return population;
+  }
+
+  getBestChromosome(population: string[]): string {
+    const fitnesses = population.map(this.fitness);
+    return population[fitnesses.indexOf(Math.max(...fitnesses))];
+  }
+
+  presentChromosome(chromosome: string) {
+    console.log("chromosome: ", chromosome);
+    console.log("fitness: ", this.fitness(chromosome));
+    console.log("--------------------------------");
   }
 }
