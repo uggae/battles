@@ -141,9 +141,41 @@ describe("binary genetic algorithms", () => {
   });
   describe("presentChromosome:", () => {
     it("presents the chromosome", () => {
+      const consoleLogSpy = jest
+        .spyOn(console, "log")
+        .mockImplementation(() => {});
       const ga = new GeneticAlgorithm();
       const result = ga.presentChromosome("01");
+
+      expect(consoleLogSpy.mock.calls).to.deep.include(["chromosome: ", "01"]);
+      expect(consoleLogSpy.mock.calls).to.deep.include([
+        "fitness: ",
+        0.0047152503703509555,
+      ]);
+      expect(consoleLogSpy.mock.calls).to.deep.include([
+        "--------------------------------",
+      ]);
       expect(result).to.be.undefined;
+      consoleLogSpy.mockRestore();
+    });
+  });
+  describe("complete:", () => {
+    it("completes the genetic algorithm", () => {
+      const consoleLogSpy = jest
+        .spyOn(console, "log")
+        .mockImplementation(() => {});
+      const ga = new GeneticAlgorithm();
+      const result = ga.complete();
+      expect(result).to.be.undefined;
+      expect(consoleLogSpy.mock.calls).to.deep.include([
+        "chromosome: ",
+        "1001010111",
+      ]);
+      expect(consoleLogSpy.mock.calls).to.deep.include(["fitness: ", Infinity]);
+      expect(consoleLogSpy.mock.calls).to.deep.include([
+        "--------------------------------",
+      ]);
+      consoleLogSpy.mockRestore();
     });
   });
 });

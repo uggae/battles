@@ -18,7 +18,9 @@ export class GeneticAlgorithm {
 
   select(population: string[], fitnesses: number[]) {
     // TODO: Implement the select method
-    return [population[0], population[1]];
+    const best = this.getBestChromosome(population);
+    const random = population[Math.floor(Math.random() * population.length)];
+    return [best, random];
   }
 
   mutate(chromosome: string, p: number) {
@@ -106,6 +108,7 @@ export class GeneticAlgorithm {
     let population = this.getInitialPopulation(length, populationSize);
     for (let i = 0; i < iterations; i++) {
       const fitnesses = population.map(fitness);
+      //TODO: should we terminate early when we have the best chromosome?
       let newPopulation = [];
       while (newPopulation.length < population.length) {
         const selected = this.select(population, fitnesses);
@@ -133,5 +136,11 @@ export class GeneticAlgorithm {
     console.log("chromosome: ", chromosome);
     console.log("fitness: ", this.fitness(chromosome));
     console.log("--------------------------------");
+  }
+
+  complete() {
+    const population = this.run(this.fitness, 10, 0.8, 0.1);
+    const best = this.getBestChromosome(population);
+    this.presentChromosome(best);
   }
 }
