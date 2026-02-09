@@ -17,22 +17,38 @@ export class GeneticAlgorithm {
   }
 
   select(population: string[], fitnesses: number[]) {
-    // TODO: Implement the select method
-    const best = this.getBestChromosome(population);
-    const random = population[Math.floor(Math.random() * population.length)];
-    return [best, random];
+    function fitnessProportionateSelection(
+      population: string[],
+      fitnesses: number[],
+    ) {
+      const sumOfFitnesses = fitnesses.reduce((acc, curr) => acc + curr, 0);
+      const probabilities = fitnesses.map(
+        (fitness) => fitness / sumOfFitnesses,
+      );
+      const cumulativeProbabilities = probabilities.reduce(
+        (acc, curr) => acc + curr,
+        0,
+      );
+      const random = Math.random();
+      let cumulativeProbability = 0;
+      for (let i = 0; i < population.length; i++) {
+        cumulativeProbability += probabilities[i];
+        if (random < cumulativeProbability) {
+          return population[i];
+        }
+      }
+      return population[population.length - 1];
+    }
+    return [
+      fitnessProportionateSelection(population, fitnesses),
+      fitnessProportionateSelection(population, fitnesses),
+    ];
   }
 
   mutate(chromosome: string, p: number) {
     let newChromosome = chromosome;
     for (let i = 0; i < chromosome.length; i++) {
       if (Math.random() < p) {
-        // TODO: is it OK to reuse the variable chromosome?
-        // chromosome =
-        // chromosome.substring(0, i) +
-        // (chromosome[i] === "0" ? "1" : "0") +
-        // chromosome.substring(i + 1);
-
         newChromosome =
           newChromosome.substring(0, i) +
           (newChromosome[i] === "0" ? "1" : "0") +
@@ -43,7 +59,6 @@ export class GeneticAlgorithm {
   }
 
   crossover(chromosome1: string, chromosome2: string) {
-    // TODO: Implement the crossover method
     const crossoverPoint = Math.floor(Math.random() * chromosome1.length);
     const newChromosome1 =
       chromosome1.substring(0, crossoverPoint) +
@@ -70,6 +85,7 @@ export class GeneticAlgorithm {
       }
       return { sum, product };
     };
+    // TODO: is there a more efficient way to calculate the sum and product?
     // const sum = chromosome
     //   .split("")
     //   .reduce((acc, curr, idx, arr) => acc + parseInt(curr) * (idx + 1), 0);
