@@ -1,4 +1,5 @@
 const { assert } = require("chai");
+const { isBalanced } = require("./index");
 
 describe("Tests", () => {
   it("test", () => {

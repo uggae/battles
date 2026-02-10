@@ -1,0 +1,12 @@
+{
+  "name": "all-that-is-open-must-be-closed",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha \"**/*.test.js\""
+  },
+  "devDependencies": {
+    "mocha": "^11.0.0",
+    "chai": "^5.0.0"
+  }
+}
