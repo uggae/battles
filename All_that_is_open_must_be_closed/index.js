@@ -1,15 +1,25 @@
 function isBalanced(s, caps) {
   let stack = [];
+  let openingCharacters = caps
+    .split("")
+    .filter((char, index) => index % 2 === 0);
+  let closingCharacters = caps
+    .split("")
+    .filter((char, index) => index % 2 === 1);
+
   for (let i = 0; i < s.length; i++) {
-    if (stack.length > 0 && stack[stack.length - 1] === s[i]) {
-      stack.pop();
-    } else {
-      const openingCharacterIdx = caps.indexOf(s[i]);
-      const closingCharacter =
-        openingCharacterIdx === -1 ? undefined : caps[openingCharacterIdx + 1];
-      if (closingCharacter !== undefined) {
-        stack.push(closingCharacter);
+    const char = s[i];
+    if (closingCharacters.includes(char)) {
+      if (stack.length > 0 && stack[stack.length - 1] === char) {
+        stack.pop();
+      } else {
+        if (openingCharacters.includes(char)) {
+          stack.push(char);
+        } else return false;
       }
+    } else if (openingCharacters.includes(char)) {
+      const idx = openingCharacters.indexOf(char);
+      stack.push(closingCharacters[idx]);
     }
   }
   return stack.length === 0;
